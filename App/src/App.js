@@ -1,8 +1,10 @@
 import './App.css';
-import { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {socket} from './socket';
 import axios from 'axios';
-
+import './css/chessboard-1.0.0.min.css';
+import './js/chessboard-1.0.0.min.js'
+import Szachy from './js/index';
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
@@ -125,7 +127,7 @@ function App() {
     };
   }, []);
 
-
+  
   if(site==0){
     return (
       <div className="App">
@@ -159,8 +161,17 @@ function App() {
             <button type="sumbit" onClick={e=>sendMessage(e)}>Send</button>
           </form>
         </div>
-  
+        
         <ul>{listItems}</ul>
+        <div>
+          <div id="myBoard" style="width: 400px"></div>
+          <label>Status:</label>
+          <div id="status"></div>
+          <label>FEN:</label>
+          <div id="fen"></div>
+          <label>PGN:</label>
+          <div id="pgn"></div>
+        </div>
       </div>
     );
   }
